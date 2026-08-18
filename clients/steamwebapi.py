@@ -1,25 +1,38 @@
 # steamwebapi.py - A python script to interact with the Steam Web API
 import os
-from dotenv import load_dotenv
 import requests
 import json
+from pathlib import Path
 
-load_dotenv()
-key = os.environ["STEAMWEBAPI_KEY"]
 
-base = "https://www.steamwebapi.com/steam/api/item"
-params = {
-    "key": key,
-    "market_hash_name": "AK-47 | Redline (Field-Tested)",
-    "currency": "USD"
-}
-try:
-    response = requests.get(base, params=params, timeout=30)
-    response.raise_for_status()
+base = "https://www.steamwebapi.com/steam/api/items"
 
-    with open("item-dump.json", "w") as file:
-        json.dump(response.json(), file, indent = 2)
+project_root = Path(__file__).parent.parent
+storage_path = project_root / "storage" / "items-dump.json"
+
+def update_items():
+
+    key = os.environ["STEAMWEBAPI_KEY"]
+
+    params = {
+        "key": key,
+        "game": "cs2",
+        "max": 50000,
+        "currency": "USD",
+        "price_real_min": 5,
+        "price_real_max": 100,
+        "production": 0,
+        "pretty": 0,
+        "select": "markethashname,pricereal,pricereal24h,pricereal7d,pricereal30d,sold24h,sold7d,sold30d,unstable"
+    }
+
+    try:
+        response = requests.get(base, params=params, timeout=100)
+        response.raise_for_status()
+
+        with open(storage_path, "w") as file:
+            json.dump(response.json(), file)
         
-except requests.exceptions.RequestException as e:
-    print(f"Error: {e}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
 
