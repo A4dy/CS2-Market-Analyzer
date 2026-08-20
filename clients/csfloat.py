@@ -5,7 +5,8 @@ base = "https://csfloat.com/api/v1/listings"
 params = {
     "sort_by": "most_recent",
     "max_price": 10000,
-    "type": "buy_now"
+    "type": "buy_now",
+    "min_price": 100
 }
 
 def get_csfloat_listings():
@@ -14,9 +15,8 @@ def get_csfloat_listings():
         "Authorization": key
     }
     try:
-        response = requests.get(base, headers=headers, params=params, timeout=5)
+        response = requests.get(base, headers=headers, params=params, timeout=10)
         response.raise_for_status()
-        print(response.headers)
         return response.json()
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")

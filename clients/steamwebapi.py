@@ -32,7 +32,8 @@ def update_items():
 
         with open(storage_path, "w") as file:
             json.dump(response.json(), file)
+        return 1
         
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
-
+        return 0
