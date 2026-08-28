@@ -21,7 +21,7 @@ def evaluate_listing(price, pricereal, pricereal24h, pricereal7d, pricereal30d, 
         else:
             price_real = min(pricereal, pricereal24h)
     
-    if price_dollars > price_real + (0.01):
+    if price_dollars > price_real - (price_real * 0.02) or price_dollars > price_real - 1:
         return False
     if price_dollars < 15:
         if price_dollars > price_real - 0.5:

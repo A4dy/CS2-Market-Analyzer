@@ -21,7 +21,7 @@ def update_items():
         "currency": "USD",
         "price_real_min": 5,
         "price_real_max": 100,
-        "production": 0,
+        "production": 1,
         "pretty": 0,
         "select": "markethashname,pricereal,pricereal24h,pricereal7d,pricereal30d,sold24h,sold7d,sold30d,unstable"
     }
