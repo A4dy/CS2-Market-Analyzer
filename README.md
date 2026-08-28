@@ -8,7 +8,8 @@ An automated market intelligence and arbitrage detection pipeline for Counter-St
 
 ## 📸 Demo in Action
 
-![[CSFloat-Readme-Video 1.gif]]
+<img width="1000" height="563" alt="CSFloat-Readme-Video" src="https://github.com/user-attachments/assets/2a27da3b-1808-4ce8-834b-f165da9b1cd3" />
+
 
 *Figure 1: Live detection of mispriced listings on CSFloat triggering real-time mobile notifications with direct purchase URLs.*
 
